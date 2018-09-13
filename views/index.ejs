@@ -1,0 +1,14 @@
+<% include header %>
+	<% if (postagens.length) { %>
+		<% postagens.forEach(postagem => { %>
+			<div>
+				<article>
+					<h1><a href = <%= postagem.endereco %>>
+						<%= postagem.titulo %>
+					</a></h1>
+				</article>
+			</div>
+		<% }) %>
+	<% } %>
+
+<% include footer %>

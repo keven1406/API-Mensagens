@@ -1,0 +1,34 @@
+{
+  "name": "blog-pessoal",
+  "version": "0.0.1",
+  "description": "Um blog dinamico para compartilhamento de conhecimentos.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keven1406/blog-pessoal.git"
+  },
+  "keywords": [
+    "blog",
+    "compartilhamento",
+    "ti",
+    "programacao",
+    "javascript",
+    "express",
+    "node"
+  ],
+  "author": "Elias Keven",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keven1406/blog-pessoal/issues"
+  },
+  "homepage": "https://github.com/keven1406/blog-pessoal#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "morgan": "^1.9.1"
+  }
+}
