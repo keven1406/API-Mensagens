@@ -28,11 +28,18 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(logger('dev'))
 
 const postagens = [{
-	titulo: "Bem vindo ao Express.js",
-	postagem: "O express é um Framework para o server-side.",
-	endereco: "/postagem1",
-	dataPostagem: new Date()
-}]
+		titulo: "Bem vindo ao Express.js",
+		postagem: "O express é um Framework para o server-side.",
+		endereco: "/postagem1",
+		dataPostagem: new Date()
+	},
+	{
+		titulo: "Tudo sobre responsividade",
+		postagem: "Vamos agora desmistificar essa complexidade.",
+		endereco: "/postagem2",
+		dataPostagem: new Date()
+	}
+]
 
 app.locals.postagens = postagens
 
@@ -40,7 +47,7 @@ app.get('/', (require, response) => {
 	response.render('index')
 })
 app.use((require, response) => {
-	response.status(404).send("Não foi encontrado esta página.")
+	response.status(404).render('404')
 })
 
 http.createServer(app).listen(3000, () =>
