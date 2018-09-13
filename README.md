@@ -1,2 +1,2 @@
 # blog-pessoal
-Um blog para compartilhar minhas informações
+API para blog de compartilhamente de informações.
