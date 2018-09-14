@@ -6,18 +6,6 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-/*
-projeto
-	mostrar log de request na telas
-
-	/ -> onde ficará a home page.
-	/editar -> edita e envia.
-	/postar -> salva no array e mostra no inicio do blog.
-	/gerenciar -> gerencia do blog como nova postagem e editar.
-
-	caso venha um caminho não conhecido -> 404 error
-*/
-
 //definir motor de views
 app.set('views', path.resolve(__dirname, "views"))
 app.set('view engine', 'ejs')
@@ -27,25 +15,35 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(logger('dev'))
 
-const postagens = [{
-		titulo: "Bem vindo ao Express.js",
-		postagem: "O express é um Framework para o server-side.",
-		endereco: "/postagem1",
-		dataPostagem: new Date()
-	},
-	{
-		titulo: "Tudo sobre responsividade",
-		postagem: "Vamos agora desmistificar essa complexidade.",
-		endereco: "/postagem2",
-		dataPostagem: new Date()
-	}
-]
+const postagens = []
 
 app.locals.postagens = postagens
 
 app.get('/', (require, response) => {
 	response.render('index')
 })
+
+app.get('/write', (request, response) => {
+	response.render('write')
+})
+
+//gerarIndereco:: Number -> String
+const gerarIndereco = number => {
+	return 'postagem' + number
+}
+
+app.post('/write', (request, response) => {
+	if (!request.body.titulo)
+		return response.status(400).send('Postagem não foi encontrada')
+	postagens.push({
+		titulo: request.body.titulo,
+		postagem: request.body.corpo,
+		endereco: gerarIndereco(postagens.length + 1),
+		dataPostagem: new Date 
+	})
+	response.redirect('/')
+})
+
 app.use((require, response) => {
 	response.status(404).render('404')
 })
