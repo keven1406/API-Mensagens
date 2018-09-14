@@ -36,6 +36,15 @@ const gerarIndereco = number => {
 	return '/postagem' + number
 }
 
+const gerarData = novaData => {
+	const data = [
+		novaData.getDate(),
+		"0" + (novaData.getMonth() + 1),
+		novaData.getFullYear()
+	]
+	return data.join(" - ")
+}
+
 app.post('/write', (request, response) => {
 	if (!request.body.titulo)
 		return response.status(400).send('Postagem não foi encontrada')
@@ -43,7 +52,7 @@ app.post('/write', (request, response) => {
 		titulo: request.body.titulo,
 		corpo: request.body.corpo,
 		endereco: gerarIndereco(postagens.length + 1),
-		dataPostagem: new Date 
+		dataPostagem: gerarData((new Date()))
 	})
 	response.redirect('/')
 })

@@ -1,8 +1,65 @@
 @charset "UTF-8";
 body {
 	font-family: 'Arial', sans-serif;
+	background-color: #046cba;
+}
+a {
+	text-decoration: none;
 }
 
+#cabecalho {
+	width: 100%;
+	margin-top: -21px;
+	margin-bottom: 3px;
+	text-align: center;
+	background-color: white;
+}
 #cabecalho h1 {
-	color: blue;
+	color: #ba0472;
+	padding-top: 30px;
+}
+#cabecalho h2 {
+	padding-bottom: 30px;
+}
+#escrever div input {
+	width: 100%;
+	margin-left: -3px;
+	margin-bottom: 20px;
+}
+#escrever div textarea {
+	width: 100%;
+	margin-left: -3px;
+}
+
+#corpo {
+	background-color: white;
+	padding: 10px;
+}
+
+/*----- Postagem ------*/
+
+#escrever {
+	
+}
+#cabecalho-postagem p {
+	text-align: center;
+}
+
+#titulo-postagens {
+	border: 1px solid blue;
+	padding: 5px;
+	background-color: white;
+}
+
+#titulo-postagens article h1 {
+	text-align: center;
+	padding: 5px;
+}
+#titulo-postagens article {
+	padding: 10px;
+}
+
+#rodape {
+	margin-top: 100px;
+	text-align: center;
 }

@@ -1,15 +1,19 @@
 <% include header %>
-	<a href = "/write">Escrever uma postagem</a>
-	<% if (postagens.length) { %>
-		<% postagens.forEach(postagem => { %>
-			<div>
-				<article>
-					<h1><a href = <%= postagem.endereco %>>
-						<%= postagem.titulo %>
-					</a></h1>
-				</article>
-			</div>
-		<% }) %>
-	<% } %>
-
+	<section id = "corpo">
+		<h1>Postagens</h1>
+		<a href = "/write" id = 'escrever'>Escrever uma postagem</a>
+		<ul>
+			<% if (postagens.length) { %>
+				<% postagens.forEach(postagem => { %>
+					<li>
+						<article>
+							<h1><a href = <%= postagem.endereco %>>
+								<%= postagem.titulo %>
+							</a></h1>
+						</article>
+					</li>
+				<% }) %>
+			<% } %>
+		</ul>
+	</section>
 <% include footer %>

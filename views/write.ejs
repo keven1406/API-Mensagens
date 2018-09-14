@@ -1,9 +1,13 @@
 <% include header %>
-<section>
-	<form method = 'post' rele = 'form'>
-		<input type = 'text' placeholder = "Digite o titulo." id = "titulo" name = 'titulo'>
-		<textarea id = "corpo" name = "corpo"></textarea>
-		<input type = 'submit' value = "Postar"/>
-	</form>
-</section>
+	<section>
+		<form method = 'post' rele = 'form' id = 'escrever'>
+			<div>
+				<input type = 'text' placeholder = "Digite o titulo." id = "titulo" name = 'titulo' required>
+			</div>
+			<div>
+				<textarea id = "corpo" name = "corpo" rows = "20" required></textarea>
+			</div>
+			<input type = 'submit' value = "Postar"/>
+		</form>
+	</section>
 <% include footer %>
