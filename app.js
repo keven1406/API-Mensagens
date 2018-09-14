@@ -15,6 +15,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(logger('dev'))
 
+//serv to public docs
+const publicPath = path.resolve(__dirname, 'public')
+app.use(express.static(publicPath))
+
 const postagens = []
 
 app.locals.postagens = postagens
@@ -45,21 +49,23 @@ app.post('/write', (request, response) => {
 })
 
 //this middleware take the url request and search in 'postagens' array.
-app.use((request, response) => {
+app.use((request, response, next) => {
 	if (postagens.find(postagem =>
 		postagem.endereco === request.url ? true : false )) {
 		
 		let postar = postagens.filter(item => {
 			if (item.endereco === request.url) return true
 		})[0]
-		
 		app.locals.postar = postar
 		
 		response.render('read')
-	} else {
-		response.status(404).render('404')
 	}
+	next() 
 })
+
+app.use((request, response) =>
+	response.status(404).render('404')
+)
 
 http.createServer(app).listen(3000, () =>
 	console.log('Servidor rodando na porta 3000.')

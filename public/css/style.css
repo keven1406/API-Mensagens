@@ -1,0 +1,8 @@
+@charset "UTF-8";
+body {
+	font-family: 'Arial', sans-serif;
+}
+
+#cabecalho h1 {
+	color: blue;
+}
