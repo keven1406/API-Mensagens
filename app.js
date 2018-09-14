@@ -29,7 +29,7 @@ app.get('/write', (request, response) => {
 
 //gerarIndereco:: Number -> String
 const gerarIndereco = number => {
-	return 'postagem' + number
+	return '/postagem' + number
 }
 
 app.post('/write', (request, response) => {
@@ -37,15 +37,28 @@ app.post('/write', (request, response) => {
 		return response.status(400).send('Postagem não foi encontrada')
 	postagens.push({
 		titulo: request.body.titulo,
-		postagem: request.body.corpo,
+		corpo: request.body.corpo,
 		endereco: gerarIndereco(postagens.length + 1),
 		dataPostagem: new Date 
 	})
 	response.redirect('/')
 })
 
-app.use((require, response) => {
-	response.status(404).render('404')
+//this middleware take the url request and search in 'postagens' array.
+app.use((request, response) => {
+	if (postagens.find(postagem =>
+		postagem.endereco === request.url ? true : false )) {
+		
+		let postar = postagens.filter(item => {
+			if (item.endereco === request.url) return true
+		})[0]
+		
+		app.locals.postar = postar
+		
+		response.render('read')
+	} else {
+		response.status(404).render('404')
+	}
 })
 
 http.createServer(app).listen(3000, () =>
