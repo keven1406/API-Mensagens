@@ -57,6 +57,37 @@ app.post('/write', (request, response) => {
 	response.redirect('/')
 })
 
+//Create User
+const usuarios = []
+
+//Register
+app.get('/register', (request, response) => {
+	response.render('register')
+})
+
+app.post('/register', (request, response) => {
+	usuarios.push({
+		usuario: request.body.user,
+		senha: request.body.password,
+		createdAt: new Date()
+	})
+	response.redirect('/login')
+})
+
+//login
+app.get('/login', (request, response) => {
+	response.render('login')
+})
+
+app.post('/login', (request, response) => {
+	const procurarUser = usuario => usuarioSalvo =>{
+		if ((usuarioSalvo.usuario === usuario.body.user) && (usuarioSalvo.senha === usuario.body.password))
+			return true	
+	}
+	if(usuarios.find(procurarUser(request))) reponse.render('admin')
+	else response.status(404).render('404')
+})
+
 //this middleware take the url request and search in 'postagens' array.
 app.use((request, response, next) => {
 	if (postagens.find(postagem =>
@@ -76,6 +107,6 @@ app.use((request, response) =>
 	response.status(404).render('404')
 )
 
-http.createServer(app).listen(3000, () =>
+http.createServer(app).listen(3000, '192.168.1.10', () =>
 	console.log('Servidor rodando na porta 3000.')
 )
