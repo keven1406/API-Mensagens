@@ -79,12 +79,14 @@ app.get('/login', (request, response) => {
 	response.render('login')
 })
 
+const procurarUser = usuario => usuarioSalvo => {
+	console.log('true ou false: ', usuarioSalvo, 'request', usuario.body.user, usuario.body.password )
+	if ((usuarioSalvo.usuario == usuario.body.user) && (usuarioSalvo.senha === usuario.body.password))
+		return true	
+}
+
 app.post('/login', (request, response) => {
-	const procurarUser = usuario => usuarioSalvo =>{
-		if ((usuarioSalvo.usuario === usuario.body.user) && (usuarioSalvo.senha === usuario.body.password))
-			return true	
-	}
-	if(usuarios.find(procurarUser(request))) reponse.render('admin')
+	if(usuarios.find(procurarUser(request))) response.render('admin')
 	else response.status(404).render('404')
 })
 
